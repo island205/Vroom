@@ -1,11 +1,11 @@
 define(function(require,exports,module){
 	var Shape = require("./shape")
-	var Editor = function(container,components){
+	var Editor = function(paper,components){
 		//container : id of div
 		//components: list of shapes ;
 		//example:[{text:"沙发",src:"couch.png"}]
 		
-		this.stage = new Raphael(container);
+		this.stage = paper;
 		this.components = components;
 		this.componentList = [];
 
@@ -86,6 +86,7 @@ define(function(require,exports,module){
 		_bind:function(){
 			var self = this;
 			this.stage.canvas.addEventListener('click',function(e){
+				self.selectElement && self.selectElement.unselect();
 				self.selectElement = e.__select__;
 				
 			});
