@@ -86,6 +86,7 @@ define(function(require,exports,module){
 		_bind:function(){
 			var self = this;
 			this.stage.canvas.addEventListener('click',function(e){
+				self.selectElement && self.selectElement.unselect();
 				self.selectElement = e.__select__;
 				
 			});
