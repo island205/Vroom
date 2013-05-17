@@ -1,3 +1,9 @@
 define(function (require, exports, module) {
-    console.log('shop')
+	var Editor = require("./editor")
+	var Shape = require("./shape")
+
+	var editor = new Editor("container",[{
+		text:"沙发",
+		src:"/design/single-couch.png"
+	}]);
 })
