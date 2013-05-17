@@ -21,7 +21,7 @@ define(function(require, exports ,module){
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;
         var curElem = paper.getElementByPoint(e.x, e.y);
-        if(curElem){
+        if(curElem || !this.active){
             return;
         }
         if(this.points.length > 2 && this.near(e)){
