@@ -1,33 +1,32 @@
 define(function(require, exports ,module){
 
     var util = require("./util");
+    var ev = require("./event");
 
-    function Polygon(){
-        this.points = [];
-    }
-
-    function PolygonMaker(paper){
+    var PolygonMaker = util.singleton(function (paper){
         var self = this;
-        if(PolygonMaker.instance){
-            return PolygonMaker.instance;
-        }
-
+        
         self.points = [];
         self.curline = null;
+        self.active = true;
         self.paper = paper;
 
         Raphael.el.click(function(e){
             self.clickHandler(e);
         });
-        PolygonMaker.instance = this;
-    }
+    })
 
+    ev.mixin(PolygonMaker);
 
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;
+        var curElem = paper.getElementByPoint(e.x, e.y);
+        if(curElem){
+            return;
+        }
         if(this.points.length > 2 && this.near(e)){
             this.points.push(this.points[0]);
-            this.done(paper.path(util.translate(this.points)).attr({
+            this.fire("done",paper.path(util.translate(this.points)).attr({
                 fill:"#b1c9ed"
             }));
             this.points.length = 0;
@@ -39,6 +38,7 @@ define(function(require, exports ,module){
             })
         }
     }
+
 
     PolygonMaker.prototype.near = function(e){
         var p1 = this.points[0];
@@ -52,15 +52,13 @@ define(function(require, exports ,module){
     }
 
     PolygonMaker.prototype.start = function(){
+        this.active = true;
         return this;
     }
 
     PolygonMaker.prototype.cancel = function(){
+        this.active = false
         return this;
-    }
-
-    PolygonMaker.prototype.done = function(shape){
-        return ;
     }
 
 
