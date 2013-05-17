@@ -1,0 +1,7 @@
+{
+  "name": "Vroom",
+  "version": "0.0.0",
+  "dependencies": {
+    "seajs": "~2.0.0"
+  }
+}
