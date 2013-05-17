@@ -11,11 +11,11 @@ define(function(require, exports ,module){
         self.active = opt.active;
         self.paper = paper;
 
-        paper.canvas.onclick = function(e){
+        paper.canvas.addEventListener("click",function(e){
             e.stopPropagation();
             self.clickHandler(e);
             return false;
-        };
+        });
     })
 
     ev.mixin(PolygonMaker);
@@ -61,6 +61,7 @@ define(function(require, exports ,module){
 
     PolygonMaker.prototype.stop = function(){
         this.curline && this.curline.remove();
+        this.points.length = 0;
         this.active = false;
         return this;
     }
