@@ -1,11 +1,11 @@
 define(function(require,exports,module){
 	var Shape = require("./shape")
-	var Editor = function(container,components){
+	var Editor = function(paper,components){
 		//container : id of div
 		//components: list of shapes ;
 		//example:[{text:"沙发",src:"couch.png"}]
 		
-		this.stage = new Raphael(container);
+		this.stage = paper;
 		this.components = components;
 		this.componentList = [];
 
