@@ -11,9 +11,11 @@ define(function(require, exports ,module){
         self.active = opt.active;
         self.paper = paper;
 
-        Raphael.el.click(function(e){
+        paper.canvas.onclick = function(e){
+            e.stopPropagation();
             self.clickHandler(e);
-        });
+            return false;
+        };
     })
 
     ev.mixin(PolygonMaker);
@@ -24,6 +26,7 @@ define(function(require, exports ,module){
         if(curElem || !this.active){
             return;
         }
+        console.log(e);
         if(this.points.length > 2 && this.near(e)){
             this.points.push(this.points[0]);
             this.fire("done",paper.path(util.translate(this.points)).attr({
@@ -56,8 +59,9 @@ define(function(require, exports ,module){
         return this;
     }
 
-    PolygonMaker.prototype.cancel = function(){
-        this.active = false
+    PolygonMaker.prototype.stop = function(){
+        this.curline && this.curline.remove();
+        this.active = false;
         return this;
     }
 
