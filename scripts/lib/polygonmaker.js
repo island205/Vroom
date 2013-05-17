@@ -3,12 +3,12 @@ define(function(require, exports ,module){
     var util = require("./util");
     var ev = require("./event");
 
-    var PolygonMaker = util.singleton(function (paper){
+    var PolygonMaker = util.singleton(function (paper, opt){
         var self = this;
         
         self.points = [];
         self.curline = null;
-        self.active = true;
+        self.active = opt.active;
         self.paper = paper;
 
         Raphael.el.click(function(e){
