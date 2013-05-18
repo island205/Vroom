@@ -72,7 +72,7 @@ define(function(require,exports,module){
 					startX = x;
 					startY = y;
 				}, function (e) {
-					self.componentList.push(new Shape(self.stage,{
+					self.componentList.push(new Shape(self, self.stage,{
 						type:"image",
 						src:c.src,
 						width:self.getActualLength(c.size.width),
@@ -97,7 +97,7 @@ define(function(require,exports,module){
                     self.selectElement && self.selectElement.rotate(true);
                 } else if (evt.keyCode == 40) { // Up key
                     self.selectElement && self.selectElement.rotate(false);
-                }else if (evt.keyCode == 46) {
+                }else if (evt.keyCode == 46) { //delete shape
                     self.selectElement && self.selectElement.remove();
                 }
             })

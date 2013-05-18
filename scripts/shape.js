@@ -11,11 +11,12 @@ define(function(require,exports,module){
 		return a;
 	}
 
-	var Shape = function(stage,options){
+	var Shape = function(editor, stage,options){
 		this.type = options.type;
 		delete options.type
 		this.options = options || {};
 		this.stage = stage;
+		this.editor = editor;
         this.rotateDeg = 0;
 		this.init();
 	}
@@ -52,23 +53,37 @@ define(function(require,exports,module){
             }
         },
 		_bind:function(){
+            var isCtrlDown = false
+            $('body').keydown(function (evt) {
+                console.log(evt.which)
+                if (evt.which == 17) {
+                    isCtrlDown = true;
+                }
+            })
+            $('body').keyup(function (evt) {
+                if (evt.which == 17) {
+                    isCtrlDown = false;
+                }
+            })
+			var targetX, targetY;
 			var currentX,currentY,el = this.element;
 			var self = this;
 			el.drag(function (dx, dy, x, y, e) {
 				//on move , dx and dy are relative to the START POINT  of this drag
 				// e.stopPropagation();
-				var targetX, targetY;
 
 				this._isDragging = true; //tag _isDragging ,so that not to fire click event
 				targetX = dx + currentX;
 				targetY = dy + currentY;
 				console.log(this.type,targetX,targetY);
-                this.rotate(-self.rotateDeg);
-				this.attr({
-					x:targetX,
-					y:targetY
-				});
-                this.rotate(self.rotateDeg);
+                if (!isCtrlDown) {
+                    this.rotate(-self.rotateDeg);
+				    this.attr({
+				    	x:targetX,
+				    	y:targetY
+				    });
+                    this.rotate(self.rotateDeg);
+                }
 			}, function (x, y, e) {
 				//on start
 				e.stopPropagation();
@@ -78,6 +93,14 @@ define(function(require,exports,module){
 				this._isDragging =true;
 			}, function (e) {
 				e.stopPropagation();
+                if (isCtrlDown) {
+					self.editor.componentList.push(new Shape(self.editor, self.stage,{
+						type:"image",
+						src: self.element.attr('src'),
+						width: self.element.attr('width'),
+						height:self.element.attr('height')
+					}).render(targetX, targetY));
+                }
 			});		
 
 			el.click(function(e){
