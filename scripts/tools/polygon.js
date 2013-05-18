@@ -4,7 +4,7 @@ define(function(require, exports, module){
     
     exports.name = "polygon";
     exports.init = function(paper){
-        maker = new PolygonMaker(paper, {active:true});
+        maker = new PolygonMaker(paper, {active:false});
     }
     exports.start = function(){
         maker.start();

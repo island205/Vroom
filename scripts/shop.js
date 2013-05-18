@@ -4,7 +4,7 @@ define(function (require, exports, module) {
 
     require("jquery");
 
-    var paper = Stage("canvas");
+    var paper = Stage("canvas",500,500);
 
 	var editor = new Editor(paper,[{
 		text:"沙发",
