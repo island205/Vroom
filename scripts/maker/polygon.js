@@ -1,10 +1,9 @@
 define(function(require, exports ,module){
 
+    var Maker = require("./makerfactory");
     var util = require("util");
-    var ev = require("event");
-    var Shape = require("shape");
 
-    var PolygonMaker = util.singleton(function (paper, opt){
+    var PolygonMaker = Maker(function (paper, opt){
         var self = this;
         
         self.points = [];
@@ -19,12 +18,11 @@ define(function(require, exports ,module){
         });
     });
 
-    ev.mixin(PolygonMaker);
 
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;
-        var curElem = paper.getElementByPoint(e.offsetX, e.offsetY);
-        if(curElem || !this.active){
+        var curElem = paper.getElementByPoint(e.x, e.y);
+        if(!this.active){
             return;
         }
         
@@ -38,6 +36,10 @@ define(function(require, exports ,module){
             }));
             this.points.length = 0;
         }else{
+            if(this.points.length == 0 && curElem){
+                return;
+            }
+
             this.points.push([e.offsetX,e.offsetY]);
             this.curline && this.curline.remove();
             this.curline = paper.path(util.translate(this.points),{
