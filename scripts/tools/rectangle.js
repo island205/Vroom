@@ -7,9 +7,9 @@ define(function(require, exports, module){
         maker = new RectangleMaker(paper);
     }
     exports.start = function(){
-        // maker.start();
+        maker.start();
     }
     exports.stop = function(){
-        // maker.stop();
+        maker.stop();
     }
 });
