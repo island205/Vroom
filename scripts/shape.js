@@ -22,7 +22,10 @@ define(function(require,exports,module){
 		},
 		render:function(x,y){
 			var paper = this.stage;
-			var elem = this.element = paper[this.type].call(paper).attr(this.options);
+			var elem = this.element = paper[this.type].call(paper).attr(this.options).attr({
+				x:x,
+				y:y
+			});
 			this._bind();
 			this._createMask();
 			return this;
@@ -33,19 +36,20 @@ define(function(require,exports,module){
 		_bind:function(){
 			var currentX,currentY,el = this.element;
 			var self = this;
+			console.log(el);
 			el.drag(function (dx, dy, x, y, e) {
 				//on move , dx and dy are relative to the START POINT  of this drag
-				e.stopPropagation();
-				var targetX ,
-				targetY;
+				// e.stopPropagation();
+				var targetX, targetY;
+
 				this._isDragging = true; //tag _isDragging ,so that not to fire click event
 				targetX = dx + currentX;
 				targetY = dy + currentY;
+				console.log(this.type,targetX,targetY);
 				this.attr({
-					cx:targetX,
-					cy:targetY
+					x:targetX,
+					y:targetY
 				});
-				console.log("asd",targetY,targetX);
 			}, function (x, y, e) {
 				//on start
 				e.stopPropagation();

@@ -1,5 +1,5 @@
 define(function(require,exports,module){
-	var Shape = require("./shape")
+	var Shape = require("shape")
 	var Editor = function(paper,components){
 		//container : id of div
 		//components: list of shapes ;
@@ -54,7 +54,7 @@ define(function(require,exports,module){
 			var self = this;
 			this.components.forEach(function(c,i){
 				var startY = i* height + marginTop;
-				var el = self.stage.rect(left,startY,width,height).attr("fill","#fff");
+				var el = self.stage.rect(left,startY,width,height).attr("fill","#ccc");
 				self.stage.text(left+width/2,startY+height/2,c.text);
 				var startX,startY;
 				var currentX,currentY;

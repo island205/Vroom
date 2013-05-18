@@ -1,8 +1,8 @@
 define(function(require, exports ,module){
 
-    var util = require("./util");
-    var Shape = require("../shape");
-    var ev = require("./event");
+    var util = require("util");
+    var ev = require("event");
+    var Shape = require("shape");
 
     var PolygonMaker = util.singleton(function (paper, opt){
         var self = this;
@@ -17,29 +17,28 @@ define(function(require, exports ,module){
             self.clickHandler(e);
             return false;
         });
-    })
+    });
 
     ev.mixin(PolygonMaker);
 
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;
-        var curElem = paper.getElementByPoint(e.x, e.y);
+        var curElem = paper.getElementByPoint(e.offsetX, e.offsetY);
         if(curElem || !this.active){
             return;
         }
-        console.log(e);
+        
         if(this.points.length > 2 && this.near(e)){
             this.points.push(this.points[0]);
             this.curline && this.curline.remove();
-            this.fire("done",new Shape(paper,{
-                type:"path",
+            this.fire("done",paper.path().attr({
                 path:util.translate(this.points),
                 stroke:"#333",
                 fill:"#b1c9ed"
-            }).render());
+            }));
             this.points.length = 0;
         }else{
-            this.points.push([e.x,e.y]);
+            this.points.push([e.offsetX,e.offsetY]);
             this.curline && this.curline.remove();
             this.curline = paper.path(util.translate(this.points),{
                 stroke:"#333"
@@ -50,7 +49,7 @@ define(function(require, exports ,module){
 
     PolygonMaker.prototype.near = function(e){
         var p1 = this.points[0];
-        var p2 = [e.x,e.y];
+        var p2 = [e.offsetX,e.offsetY];
 
         if(!p1){
             return false;
