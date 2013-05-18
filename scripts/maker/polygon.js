@@ -21,8 +21,8 @@ define(function(require, exports ,module){
 
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;
-        var curElem = paper.getElementByPoint(e.offsetX, e.offsetY);
-        if(curElem || !this.active){
+        var curElem = paper.getElementByPoint(e.x, e.y);
+        if(!this.active){
             return;
         }
         
@@ -36,6 +36,10 @@ define(function(require, exports ,module){
             }));
             this.points.length = 0;
         }else{
+            if(this.points.length == 0 && curElem){
+                return;
+            }
+
             this.points.push([e.offsetX,e.offsetY]);
             this.curline && this.curline.remove();
             this.curline = paper.path(util.translate(this.points),{

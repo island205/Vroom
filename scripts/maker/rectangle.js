@@ -23,16 +23,16 @@ define(function(require, exports ,module){
 
         paper.canvas.addEventListener("mousemove",function(e){
             var start = self.startpoint
-                , curtmp = null
-                , p1x = start[0]
-                , p1y = start[1]
-                , p2x = e.layerX
-                , p2y = e.layerY;
+                , curtmp = null;
                 
             if(!self.active){return false;}
             if(!self.startpoint){return false;}
             if(self.current){curtmp = self.current;}
             
+            var p1x = start[0]
+                , p1y = start[1]
+                , p2x = e.layerX
+                , p2y = e.layerY;
 
             console.log(p1x,p1y,p2x,p2y,e);
             self.current = paper.rect(Math.min(p1x,p2x), Math.min(p1y,p2y), Math.abs(p1x-p2x), Math.abs(p1y-p2y)).attr({
