@@ -6,6 +6,7 @@ lib-cov
 *.dat
 *.out
 *.pid
+*.psd
 *.gz
 
 pids
