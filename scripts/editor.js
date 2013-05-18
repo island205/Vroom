@@ -49,8 +49,8 @@ define(function(require,exports,module){
 			//list all components on right
 			var left = this.stage.width * this._editSize;
 			var marginTop = 100;
-			var height = 40;
-			var width = 100;
+            var height = 40;
+            var width = 100;
 			var self = this;
 			this.components.forEach(function(c,i){
 				var startY = i* height + marginTop;
@@ -72,11 +72,11 @@ define(function(require,exports,module){
 					startX = x;
 					startY = y;
 				}, function (e) {
-					self.componentList.push(new Shape(self.stage,{
+					self.componentList.push(new Shape(self, self.stage,{
 						type:"image",
 						src:c.src,
-						width:self.getActualLength(50),
-						height:self.getActualLength(50)
+						width:self.getActualLength(c.size.width),
+						height:self.getActualLength(c.size.height)
 					}).render(currentX,currentY));
 					this._isDragging = false;
 				});		
@@ -91,6 +91,16 @@ define(function(require,exports,module){
 				self.selectElement = e.__select__;
 				
 			});
+            $('body').keydown(function (evt) {
+                console.log(evt);
+                if (evt.keyCode == 38) { // Down key
+                    self.selectElement && self.selectElement.rotate(true);
+                } else if (evt.keyCode == 40) { // Up key
+                    self.selectElement && self.selectElement.rotate(false);
+                }else if (evt.keyCode == 46) { //delete shape
+                    self.selectElement && self.selectElement.remove();
+                }
+            })
 		},
 		getActualLength:function(w){
 			return w * this._ruleScale;
