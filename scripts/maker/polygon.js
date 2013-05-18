@@ -27,7 +27,7 @@ define(function(require, exports ,module){
         if(curElem || !this.active){
             return;
         }
-        console.log(e);
+        
         if(this.points.length > 2 && this.near(e)){
             this.points.push(this.points[0]);
             this.curline && this.curline.remove();
@@ -38,7 +38,6 @@ define(function(require, exports ,module){
             }));
             this.points.length = 0;
         }else{
-            console.log(e);
             this.points.push([e.offsetX,e.offsetY]);
             this.curline && this.curline.remove();
             this.curline = paper.path(util.translate(this.points),{
