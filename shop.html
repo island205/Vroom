@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="/components/bootstrap.css/css/bootstrap.css">
     <script type="text/javascript" src="/components/raphael/raphael-min.js"></script>
     <script type="text/javascript" data-config="/scripts/config" data-main="/scripts/shop"  src="/components/seajs/dist/sea.js"></script>
 </head>
 <body>
-    <input type="button" value="me" id="a" style="margin-left:100px">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Title</a>
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div>
+    </div>
+    
 
-    <div id="container" style="position:absolute;top:0px;left:0px;width:100px;height:100px;border:1px solid #ccc"></div>
+    <input type="button" value="me" id="a" style="margin-left:1050px">
+    
+    <div class="container">
+        <div id="canvas" style="margin-left:200px;"></div>
+    </div>
+    
 </body>
 </html>

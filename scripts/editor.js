@@ -73,6 +73,7 @@ define(function(require,exports,module){
 					startY = y;
 				}, function (e) {
 					self.componentList.push(new Shape(self.stage,{
+						type:"image",
 						src:c.src,
 						width:self.getActualLength(50),
 						height:self.getActualLength(50)

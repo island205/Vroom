@@ -1,6 +1,7 @@
 define(function(require, exports ,module){
 
     var util = require("./util");
+    var Shape = require("../shape");
     var ev = require("./event");
 
     var PolygonMaker = util.singleton(function (paper, opt){
@@ -29,9 +30,13 @@ define(function(require, exports ,module){
         console.log(e);
         if(this.points.length > 2 && this.near(e)){
             this.points.push(this.points[0]);
-            this.fire("done",paper.path(util.translate(this.points)).attr({
+            this.curline && this.curline.remove();
+            this.fire("done",new Shape(paper,{
+                type:"path",
+                path:util.translate(this.points),
+                stroke:"#333",
                 fill:"#b1c9ed"
-            }));
+            }).render());
             this.points.length = 0;
         }else{
             this.points.push([e.x,e.y]);

@@ -10,11 +10,9 @@ define(function(require,exports,module){
 	}
 
 	var Shape = function(stage,options){
-		this.options = mix({
-			src:"",
-			width:100,
-			height:100
-		},options) ;
+		this.type = options.type;
+		delete options.type
+		this.options = options || {};
 		this.stage = stage;
 		this.init();
 	}
@@ -23,7 +21,8 @@ define(function(require,exports,module){
 		init:function(){
 		},
 		render:function(x,y){
-			this.element = this.stage.image(this.options.src,x,y,this.options.width,this.options.height);
+			var paper = this.stage;
+			var elem = this.element = paper[this.type].call(paper).attr(this.options);
 			this._bind();
 			this._createMask();
 			return this;
@@ -43,9 +42,10 @@ define(function(require,exports,module){
 				targetX = dx + currentX;
 				targetY = dy + currentY;
 				this.attr({
-					x:targetX,
-					y:targetY
+					cx:targetX,
+					cy:targetY
 				});
+				console.log("asd",targetY,targetX);
 			}, function (x, y, e) {
 				//on start
 				e.stopPropagation();

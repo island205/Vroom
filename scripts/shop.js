@@ -4,7 +4,7 @@ define(function (require, exports, module) {
 
     require("jquery");
 
-    var paper = window.paper = Raphael("container");
+    var paper = window.paper = Raphael("canvas");
 
 	var editor = new Editor(paper,[{
 		text:"沙发",
@@ -12,7 +12,9 @@ define(function (require, exports, module) {
 	}]);
 
     var PolygonMaker = require("./lib/polygonmaker")
-        
+        , Tools = require("./tools");
+
+
     var maker = new PolygonMaker(paper,{active:true}); // 负责生成各种多边形
 
     var active = false;
