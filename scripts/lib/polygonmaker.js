@@ -17,7 +17,7 @@ define(function(require, exports ,module){
             self.clickHandler(e);
             return false;
         });
-    })
+    });
 
     ev.mixin(PolygonMaker);
 

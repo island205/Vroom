@@ -1,7 +1,7 @@
 
 define(function (require, exports, module) {
 
-    var paper = window.paper = Raphael("canvas");
+    var paper = Raphael("canvas");
 
     function renderObject(obj){
         var func = paper[obj.type];
