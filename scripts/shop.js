@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 
     var editor = new Editor(paper, [{
         text: "沙发",
-        src: "/design/single-couch.png",
+        src: "  ./design/single-couch.png",
         size: {
             width: 100,
             height: 100
@@ -18,7 +18,7 @@ define(function (require, exports, module) {
     },
     {
         text: "双人沙发",
-        src: "/design/double-couch.png",
+        src: "./design/double-couch.png",
         size: {
             width: 81,
             height: 50
@@ -26,7 +26,7 @@ define(function (require, exports, module) {
     },
     {
         text: "三人沙发",
-        src: "/design/triple-couch.png",
+        src: "./design/triple-couch.png",
         size: {
             width: 114,
             height: 50
@@ -34,7 +34,7 @@ define(function (require, exports, module) {
     },
     {
         text: "多人沙发",
-        src: "/design/long-couch.png",
+        src: "./design/long-couch.png",
         size: {
             width: 221,
             height: 50
@@ -42,7 +42,7 @@ define(function (require, exports, module) {
     },
     {
         text: "圆凳",
-        src: "/design/round-stool.png",
+        src: "./design/round-stool.png",
         size: {
             width: 20,
             height: 20
@@ -50,7 +50,7 @@ define(function (require, exports, module) {
     },
     {
         text: "圆桌",
-        src: "/design/round-table.png",
+        src: "./design/round-table.png",
         size: {
             width: 50,
             height: 50
@@ -58,7 +58,7 @@ define(function (require, exports, module) {
     },
     {
         text: "有隔的长桌",
-        src: "/design/long-table-with-separate.png",
+        src: "./design/long-table-with-separate.png",
         size: {
             width: 50,
             height: 100
@@ -66,7 +66,7 @@ define(function (require, exports, module) {
     },
     {
         text: "长桌",
-        src: "/design/long-table.png",
+        src: "./design/long-table.png",
         size: {
             width: 50,
             height: 100
@@ -74,7 +74,7 @@ define(function (require, exports, module) {
     },
     {
         text: "人工学椅",
-        src: "/design/artificial-learning-chair.png",
+        src: "./design/artificial-learning-chair.png",
         size: {
             width: 50,
             height: 50
@@ -82,7 +82,7 @@ define(function (require, exports, module) {
     },
     {
         text: "圆角桌",
-        src: "/design/round-corner-table.png",
+        src: "./design/round-corner-table.png",
         size: {
             width: 70,
             height: 50
@@ -90,7 +90,7 @@ define(function (require, exports, module) {
     },
     {
         text: "方桌",
-        src: "/design/table.png",
+        src: "./design/table.png",
         size: {
             width: 70,
             height: 50
