@@ -14,8 +14,14 @@ define(function (require, exports, module) {
         }
     }
 
-    $.getJSON("data.json",function(json){
+    function getData(cb){
+        var data = JSON.parse(localStorage["data"]);
+        cb(data);
+    }
+
+
+    getData(function(json){
         json.forEach(renderObject);
     });
-
+    
 })

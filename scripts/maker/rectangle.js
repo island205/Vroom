@@ -24,7 +24,7 @@ define(function(require, exports ,module){
         paper.canvas.addEventListener("mousemove",function(e){
             var start = self.startpoint
                 , curtmp = null;
-                
+
             if(!self.active){return false;}
             if(!self.startpoint){return false;}
             if(self.current){curtmp = self.current;}
@@ -56,7 +56,7 @@ define(function(require, exports ,module){
 
     RectangleMaker.prototype.stop = function(){
         this.active = false;
-        start = null;
+        this.startpoint = null;
         return this;
     }
 

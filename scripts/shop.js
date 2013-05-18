@@ -5,6 +5,8 @@ define(function (require, exports, module) {
     require("jquery");
 
     var paper = Stage("canvas",500,500);
+    var Saver = require("./saver");
+    var saver = new Saver(paper);
 
 	var editor = new Editor(paper,[{
 		text:"沙发",
@@ -18,6 +20,13 @@ define(function (require, exports, module) {
         require("./tools/select"),
         require("./tools/rectangle"),
         require("./tools/circle"),
-        require("./tools/polygon")
+        require("./tools/polygon"),
+        require("./tools/data")
     ]);
+
+    $("#save").click(function(){
+        saver.save(function(data){
+            localStorage["data"] = JSON.stringify(data)
+        });
+    });
 });
