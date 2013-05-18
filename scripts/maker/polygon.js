@@ -1,10 +1,9 @@
 define(function(require, exports ,module){
 
+    var Maker = require("./makerfactory");
     var util = require("util");
-    var ev = require("event");
-    var Shape = require("shape");
 
-    var PolygonMaker = util.singleton(function (paper, opt){
+    var PolygonMaker = Maker(function (paper, opt){
         var self = this;
         
         self.points = [];
@@ -19,7 +18,6 @@ define(function(require, exports ,module){
         });
     });
 
-    ev.mixin(PolygonMaker);
 
     PolygonMaker.prototype.clickHandler = function(e){
         var paper = this.paper;

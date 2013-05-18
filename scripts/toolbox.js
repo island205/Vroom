@@ -6,7 +6,8 @@ define(function(require, exports, module){
     var Toolbox = util.singleton(function(paper,tools){
         var container = $("<div id='toolbox' />")
             , ul = $("<ul />")
-            , headline = $("<div class='headline' />");
+            , headline = $("<div class='headline' />")
+            , ACTIVE = "active";
 
         this.setPaper(paper);
 
@@ -16,25 +17,36 @@ define(function(require, exports, module){
         container.append(ul);
 
 
+        function activeTool(tool){
+            tool.active = true;
+            tool.btn.addClass(ACTIVE)
+            tool.start();
+        }
+
+        function deactiveTool(tool){
+            tool.active = false;
+            tool.btn.removeClass(ACTIVE)
+            tool.stop();
+        }
+
         tools.forEach(function(tool){
             var li = $("<li />")
-                , active = false
-                , ACTIVE = "active";
 
+            li.attr("title",tool.name);
             li.html(tool.name[0].toUpperCase())
             li.addClass("tool").addClass(tool.name);
             ul.append(li);
             tool.init(paper);
+            tool.btn = li;
+            tool.active = false;
+
             li.click(function(){
-                if(!active){
-                    li.addClass(ACTIVE)
-                    tool.start()
+                if(!tool.active){
+                    tools.forEach(deactiveTool);
+                    activeTool(tool);
                 }else{
-                    li.removeClass(ACTIVE)
-                    tool.stop()
+                    deactiveTool(tool);
                 }
-                
-                active = !active;
             });
             return false;
         });

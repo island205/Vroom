@@ -6,9 +6,9 @@ define(function(require, exports, module){
     exports.init = function(paper){
     }
     exports.start = function(){
-        maker.start();
+        maker && maker.start();
     }
     exports.stop = function(){
-        maker.stop();
+        maker && maker.stop();
     }
 });
