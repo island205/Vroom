@@ -1,0 +1,38 @@
+#toolbox{
+    position:absolute;
+    top:50px;
+    left:10px;
+    width:50px;
+}
+
+
+#toolbox .headline{
+    height:10px;
+    background-color:#ccc;
+}
+
+#toolbox ul{
+    margin:0;
+    padding: 0;
+}
+
+
+#toolbox li{
+    -webkit-user-select:none;
+    float: left;
+    list-style-type: none;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#toolbox li.active{
+    background-color: #9f6;
+}
+
+#toolbox ul:after{
+    content:"";
+    clear:both;
+    display: block;
+}

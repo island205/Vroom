@@ -1,5 +1,5 @@
 define(function(require,exports,module){
-	var Shape = require("./shape")
+	var Shape = require("shape")
 	var Editor = function(paper,components){
 		//container : id of div
 		//components: list of shapes ;

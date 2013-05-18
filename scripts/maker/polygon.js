@@ -1,8 +1,8 @@
 define(function(require, exports ,module){
 
-    var util = require("./util");
-    var Shape = require("../shape");
-    var ev = require("./event");
+    var util = require("util");
+    var ev = require("event");
+    var Shape = require("shape");
 
     var PolygonMaker = util.singleton(function (paper, opt){
         var self = this;
