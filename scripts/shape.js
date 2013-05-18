@@ -1,4 +1,6 @@
 define(function(require,exports,module){
+    require('jquery');
+
 	function mix(a,b){
 		for(var o in b){
 			//merge prototype
@@ -14,6 +16,7 @@ define(function(require,exports,module){
 		delete options.type
 		this.options = options || {};
 		this.stage = stage;
+        this.rotateDeg = 0;
 		this.init();
 	}
 
@@ -33,10 +36,24 @@ define(function(require,exports,module){
 		scale:function(times){
 			this.element.transform("S"+times);
 		},
+        remove: function () {
+            this.element.remove();        
+            this.mask.forEach(function (cicle) {
+                cicle.remove();
+            })
+        },
+        rotate:function (clockwise) {
+            if (clockwise) {
+                this.element.rotate(10);
+                this.rotateDeg = this.rotateDeg + 10;
+            } else {
+                this.rotateDeg = this.rotateDeg - 10;
+                this.element.rotate(-10);
+            }
+        },
 		_bind:function(){
 			var currentX,currentY,el = this.element;
 			var self = this;
-			console.log(el);
 			el.drag(function (dx, dy, x, y, e) {
 				//on move , dx and dy are relative to the START POINT  of this drag
 				// e.stopPropagation();
@@ -46,10 +63,12 @@ define(function(require,exports,module){
 				targetX = dx + currentX;
 				targetY = dy + currentY;
 				console.log(this.type,targetX,targetY);
+                this.rotate(-self.rotateDeg);
 				this.attr({
 					x:targetX,
 					y:targetY
 				});
+                this.rotate(self.rotateDeg);
 			}, function (x, y, e) {
 				//on start
 				e.stopPropagation();
