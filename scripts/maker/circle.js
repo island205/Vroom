@@ -2,7 +2,7 @@ define(function(require, exports ,module){
 
     var MakerFactory = require("./makerfactory")
 
-    var RectangleMaker = MakerFactory(function (paper, opt){
+    var CircleMaker = MakerFactory(function (paper, opt){
         var self = this;
         opt = opt || {};
 
@@ -10,10 +10,6 @@ define(function(require, exports ,module){
         self.startpoint = null;
         self.paper = paper;
         self.current = null;
-
-        paper.canvas.addEventListener("click",function(e){
-            console.log(e)
-        });
 
         paper.canvas.addEventListener("mousedown",function(e){
             if(!self.active){return false;}
@@ -34,11 +30,10 @@ define(function(require, exports ,module){
                 , p2x = e.layerX
                 , p2y = e.layerY;
 
-            console.log(p1x,p1y,p2x,p2y,e);
-            self.current = paper.rect(Math.min(p1x,p2x), Math.min(p1y,p2y), Math.abs(p1x-p2x), Math.abs(p1y-p2y)).attr({
+
+            self.current = paper.circle((p2x+p1x)/2, (p2y+p1y)/2, Math.max(Math.abs(p1x-p2x),Math.abs(p1y-p2y))/2).attr({
                 stroke:"#333",
-                //fill:"#b1c9ed"
-                fill:"#fff"
+                fill:"#b1c9ed"
             });
             curtmp.remove();
         });
@@ -50,17 +45,17 @@ define(function(require, exports ,module){
         });
     });
 
-    RectangleMaker.prototype.start = function(){
+    CircleMaker.prototype.start = function(){
         this.active = true;
         return this;
     }
 
-    RectangleMaker.prototype.stop = function(){
+    CircleMaker.prototype.stop = function(){
         this.active = false;
         this.startpoint = null;
         return this;
     }
 
 
-    return RectangleMaker
+    return CircleMaker
 });

@@ -97,7 +97,7 @@ define(function(require,exports,module){
                     self.selectElement && self.selectElement.rotate(true);
                 } else if (evt.keyCode == 40) { // Up key
                     self.selectElement && self.selectElement.rotate(false);
-                }else if (evt.keyCode == 46) { //delete shape
+                }else if (evt.keyCode == 68) { //delete shape
                     self.selectElement && self.selectElement.remove();
                 }
             })
