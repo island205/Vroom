@@ -1,8 +1,8 @@
 
 define(function (require, exports, module) {
 
-    var paper = Raphael("canvas");
-
+    var paper = Raphael("canvas",1000,800);
+    require("jquery");
     function renderObject(obj){
         var func = paper[obj.type];
         var data = obj.data || {};
@@ -15,8 +15,9 @@ define(function (require, exports, module) {
     }
 
     function getData(cb){
-        var data = JSON.parse(localStorage["data"]);
-        cb(data);
+        var data = $.getJSON("c5.json",function(json){
+            cb(json);
+        });
     }
 
 
