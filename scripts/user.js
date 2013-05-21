@@ -19,7 +19,7 @@ define(function (require, exports, module) {
                 $("#canvas-c5").show();
                 $("#canvas-fly-horse").hide();
             });
-            $("image").on("click",function(e){
+            $("#canvas-c5 image").on("click",function(e){
                 if(this.attributes.href.value == "/design/artificial-learning-chair.png"){
                     var random = new Date().getTime()%10;
                     switch(random){
@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                 $("#canvas-c5").hide();
                 $("#canvas-fly-horse").show();
             });
-            $("image").on("click",function(e){
+            $("#canvas-fly-horse image").on("click",function(e){
                 if(this.attributes.href.value == "/design/round-corner-table.png"){
                     var random = new Date().getTime()%3;
                     switch(random){
